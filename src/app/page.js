@@ -9,7 +9,7 @@ export default function Home() {
   const [answer, setAnswer] = useState("");
   const [question, setQuestion] = useState("");
 
-  const genAI = new GoogleGenerativeAI(process.env.PUBLIC_KEY);
+  const genAI = new GoogleGenerativeAI("AIzaSyDem7aCeq6F1k16klOsd28WuXHuQsxMiTc");
 
   const handleChange = (e) => {
     setQuestion(e.target.value); // Update the question state
@@ -18,7 +18,7 @@ export default function Home() {
   const runAI = async (e) => {
     e.preventDefault(); // Prevent the default form submission behavior
 
-    const model = genAI.getGenerativeModel({ model: `${process.env.AI_MODEL}` });
+    const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
     const prompt = question;
 
@@ -41,7 +41,7 @@ export default function Home() {
           <div className="kiri sm:w-1/2 p-4 flex flex-col gap-3">
             <h1 className="text-[#5296A6] drop-shadow-xl stroke-black font-bold text-center sm:hidden text-[3em]">Tanya Piwpiw</h1>
             <div
-              className=" rounded-xl text-black shadow-xl p-4 sm:p-2 h-[80vh] sm:h-3/4 w-full"
+              className=" rounded-xl text-black shadow-xl p-4 sm:p-2 h-[80vh] max-h-[80vh] sm:h-3/4 w-full"
               style={{
                 overflowY: "auto",
                 maxHeight: "100%",
@@ -51,7 +51,7 @@ export default function Home() {
               {answer}
             </div>
             <form className="gap-3 w-full flex" onSubmit={runAI}>
-              <input type="text" onChange={handleChange} placeholder="Sok tanyain...." className="input text-black input-bordered w-full" />
+              <input type="text" onChange={handleChange} placeholder="Sok tanyain...." className="input text-black bg-white input-bordered w-full" />
               <button type="submit" className="btn font-bold text-white bg-[#5296A6]">
                 ASK
               </button>
